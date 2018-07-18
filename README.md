@@ -1,7 +1,7 @@
 # Project Heirloom 
 This repository contains the code for Project Heirloom.
 
-Heirloom is a platform for product and consumer tracking in the Grocery space. It is intended to be a full "Seed to Sales" approach to grocery sales.
+Heirloom is a platform for product and consumer tracking in the Grocery space. It is intended to be a full "Seed to Sales" approach to grocery analytics.
 
 ## Mission Statement
 The mission of Heirloom is to empower consumers to make informed decisions about the environmental and societal impacts of their purchasing behavior. 
