@@ -1,0 +1,6 @@
+See Heirloom UI at port 30112 on any node in your cluster!
+
+http://<your-node-ip>:30112
+
+You can get a node IP from the following command:
+kubectl cluster-info

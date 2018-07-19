@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: heirloom-ui-dev-service
+  labels:
+    app:          heirloom
+    service:      ui
+    type:         service
+spec:
+  type: NodePort
+  ports:
+  - nodePort:   30111
+    port:       80
+    protocol:   TCP
+  selector:
+    app:      heirloom
+    service:  ui

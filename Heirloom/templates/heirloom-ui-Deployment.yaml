@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: heirloom-ui.deployment
+  labels:
+    app:      heirloom
+    service:  ui
+    type:     deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:      heirloom
+        service:  ui
+        type:     pod
+    spec:
+      containers:
+        - name:             heirloom-ui
+          image:            randypitcherii/heirloom-ui
+          imagePullPolicy:  Always
+          ports:
+          - containerPort: 80
