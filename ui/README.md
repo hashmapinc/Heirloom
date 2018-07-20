@@ -7,3 +7,6 @@ This directory contains the code for the Heirloom frontend. All web UI code will
 To start the application within the container, run `python -m heirloom_ui.app` and open `localhost:80` on your local browser to see live changes.
 
 **Note:** ensure that you update the `runContainer.sh` script to point to the volume locations suitable for your environment.
+
+## Credits
+Huge shoutout to https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world for helping us get started lightning fast with flask extensions!

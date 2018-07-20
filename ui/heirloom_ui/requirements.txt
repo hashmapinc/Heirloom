@@ -1,2 +1,4 @@
 flask-restplus
 flask-wtf
+flask-login
+flask-sqlalchemy

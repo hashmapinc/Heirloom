@@ -1,16 +1,16 @@
 from flask import Blueprint, render_template
-
-from heirloom_ui.api.restplus import restplus_api
+from heirloom_ui.forms.login import LoginForm
 
 #==============================================================================
-# Models API 
+# Login API 
 #==============================================================================
 # define namespace
 bp = Blueprint('heirloom_ui', __name__)
 
 #set default route
-@bp.route('/')
+@bp.route('/login')
 def index():
-  return render_template('index.html')
+  form = LoginForm()
+  return render_template('login.html', title='Heirloom Login', form=form)
 
 #==============================================================================
