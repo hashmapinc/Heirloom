@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect
-from heirloom_ui.forms.login import LoginForm
+from heirloom.ui.forms.login import LoginForm
 
 #==============================================================================
 # Login API 
@@ -11,7 +11,7 @@ bp = Blueprint('login', __name__)
 @bp.route('/')
 def index():
   isLoggedIn = False # TODO: do this for real
-  if isLoggedIn():
+  if isLoggedIn:
     return redirect('/home')
   else:
     return redirect('/login')
@@ -21,8 +21,7 @@ def index():
 def login():
   form = LoginForm()
   if form.validate_on_submit():
-    flash('Login requested for user {}, remember_me={}'.format(
-        form.username.data, form.remember_me.data))
+    flash('Login requested for user {}, remember_me={}'.format(form.username.data, form.remember_me.data))
     return redirect('/home')
   return render_template('login.html', title='Heirloom Login', form=form)
 #==============================================================================

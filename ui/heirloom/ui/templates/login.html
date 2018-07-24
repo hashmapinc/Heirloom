@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <div class="mdl-grid">
     <div class="mdl-layout-spacer"></div>
-    <div mdl-cell mdl-cell--4-col>
+    <div class="mdl-cell mdl-cell--4-col">
         <h3>Sign In</h3>
         <form action="" method="post" novalidate id="loginForm">
             {{ form.hidden_tag() }}
@@ -10,13 +10,25 @@
                  {{ form.username(size=32, class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label" for="sample3">{{ form.username.label }}</label>
             </div>
+            {% for error in form.username.errors %}
             <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            
+            <br><br>
+            
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 {{ form.password(size=32, class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label" for="sample3">{{ form.password.label }}</label>
             </div>
+            {% for error in form.password.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
 
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+            <br><br><br>
+
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect align-right">
                 {{ form.remember_me(class_='mdl-checkbox__input') }} 
                 {{ form.remember_me.label }}
             </label>
