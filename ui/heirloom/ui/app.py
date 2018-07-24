@@ -14,6 +14,7 @@ app.config.from_object(Config)
 
 # Setup database
 db = SQLAlchemy(app)
+db.create_all()
 
 # register blueprint modules
 app.register_blueprint(login_blueprint) # default route
