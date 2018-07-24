@@ -3,6 +3,7 @@ from flask import Flask, Blueprint
 from heirloom_ui.config import Config
 from heirloom_ui.routes.restplus import restplus_api
 from heirloom_ui.routes.login import bp as login_blueprint
+from heirloom_ui.routes.home import bp as home_blueprint
 
 #==============================================================================
 # App 
@@ -16,8 +17,9 @@ blueprint = Blueprint('api', __name__)
 restplus_api.init_app(blueprint)
 app.register_blueprint(blueprint, url_prefix='/api')
 
-# register login blueprint
-app.register_blueprint(login_blueprint)
+# register blueprint modules
+app.register_blueprint(login_blueprint) # default route
+app.register_blueprint(home_blueprint, url_prefix='/home')
 
 # Run app
 if __name__ == '__main__':
