@@ -1,19 +1,10 @@
-from flask import Flask, Blueprint
-from flask_sqlalchemy import SQLAlchemy
-
-from heirloom.ui.config import Config
+from heirloom.ui import app, db
 from heirloom.ui.routes.login import bp as login_blueprint
 from heirloom.ui.routes.home import bp as home_blueprint
 
 #==============================================================================
-# App 
+# Main 
 #==============================================================================
-# Setup flask
-app = Flask(__name__)
-app.config.from_object(Config)
-
-# Setup database
-db = SQLAlchemy(app)
 db.create_all()
 
 # register blueprint modules

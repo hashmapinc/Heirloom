@@ -33,10 +33,19 @@
                 {{ form.remember_me.label }}
             </label>
 
-            <br>
+            <br><br>
             
             {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored') }}
         </form>
+
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <span style="color: red;">[{{ message }}]</span>
+            <br>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}   
     </div>
     <div class="mdl-layout-spacer"></div>
 </div>

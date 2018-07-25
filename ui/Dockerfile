@@ -19,5 +19,5 @@ ENV PYTHONPATH=/:$PYTHONPATH
 EXPOSE 80
 
 # start flask app
-CMD ["python", "-m", "heirloom.ui.app"]
+CMD ["python", "-m", "heirloom.ui.main"]
 #==============================================================================
