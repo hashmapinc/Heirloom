@@ -43,8 +43,13 @@
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">{{title}}</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="{{ url_for('home.home') }}">Home</a>
-          <a class="mdl-navigation__link" href="{{ url_for('login.logout') }}">Logout</a>
+          {% if current_user.is_anonymous %}
+            <a class="mdl-navigation__link" href="{{ url_for('login.login') }}">Login</a>
+            <a class="mdl-navigation__link" href="{{ url_for('signup.signup') }}">Signup</a>
+          {% else %}
+            <a class="mdl-navigation__link" href="{{ url_for('home.home') }}">Home</a>
+            <a class="mdl-navigation__link" href="{{ url_for('login.logout') }}">Logout</a>
+          {% endif %}
         </nav>
       </div>
       <main class="mdl-layout__content">

@@ -16,4 +16,5 @@ db = SQLAlchemy(app)
 
 # setup flask login
 login = LoginManager(app)
+login.login_view = 'login.login'
 #==============================================================================
