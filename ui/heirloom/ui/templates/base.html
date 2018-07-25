@@ -43,10 +43,8 @@
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">{{title}}</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="/home">Home</a>
-          <a class="mdl-navigation__link" href="/api">API</a>
-          <a class="mdl-navigation__link" href="">Link_C</a>
-          <a class="mdl-navigation__link" href="">Link_D</a>
+          <a class="mdl-navigation__link" href="{{ url_for('home.home') }}">Home</a>
+          <a class="mdl-navigation__link" href="{{ url_for('login.logout') }}">Logout</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
