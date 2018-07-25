@@ -1,21 +1,30 @@
-all: venv install build run 
+all: dev 
 
 # create venv
 venv:
 	-python3 -m virtualenv env
 
 # install requirements
-install:
-	pip3 install -r heirloom/ui/requirements.txt
+install: venv
+	source env/bin/activate; \
+	pip install -r heirloom/ui/requirements.txt
+
+# get venv-activated shell
+shell: install
+	source env/bin/activate; \
+	python;
 
 # run local dev server
-dev:
-	sh scripts/runDevServer.sh
+dev: install
+	source env/bin/activate; \
+	export FLASK_APP=heirloom/ui/main.py; \
+	export FLASK_DEBUG=1; \
+	python -m flask run --port 8123 --host '0.0.0.0'
 
-# build the ui image
+# build the image
 build: 
-	sh scripts/buildImage.sh
+	docker build -t hashmapinc/heirloom-ui .
 
-# run the ui container
+# run the container
 run: 
-	sh scripts/runContainer.sh
+	docker run --rm -it -p 80:80 hashmapinc/heirloom-ui
