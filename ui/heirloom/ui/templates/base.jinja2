@@ -50,6 +50,9 @@
             <a class="mdl-navigation__link" href="{{ url_for('signup.signup') }}">Signup</a>
           {% else %}
 
+            <!-- default home link -->
+            <a class="mdl-navigation__link" href="{{ url_for('home.home') }}">Home</a>
+
             <!-- admin links -->
             {% if current_user.get_role_name() == "Admin" %}
             <a class="mdl-navigation__link" href="{{ url_for('organization.organization') }}">Organizations</a>
@@ -63,8 +66,7 @@
             {% if current_user.get_role_name() == "Seller" %}
             {% endif %}
 
-            <!-- default signed-in links -->
-            <a class="mdl-navigation__link" href="{{ url_for('home.home') }}">Home</a>
+            <!-- default logout link -->
             <a class="mdl-navigation__link" href="{{ url_for('login.logout') }}">Logout</a>
           {% endif %}
         </nav>
