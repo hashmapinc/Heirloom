@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block content %}
+<div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h3>Sign Up</h3>
+        <form action="" method="post" novalidate id="signupForm">
+            {{ form.hidden_tag() }}
+
+            <!-- username -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form.username(size=32, class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.username.label }}</label>
+            </div>
+            {% for error in form.username.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <br>
+            <br>
+
+            <!-- email -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form.email(size=64, class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.email.label }}</label>
+            </div>
+            {% for error in form.email.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            
+            <br>
+            <br>
+
+            <!-- password 1 -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form.password(size=32, class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.password.label }}</label>
+            </div>
+            {% for error in form.password.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            
+            <br>
+            <br>
+
+            <!-- password 2 -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form.password2(size=32, class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.password2.label }}</label>
+            </div>
+            {% for error in form.password2.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <br>
+            <br> 
+            {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored') }}
+        </form>
+
+
+
+        {% with messages = get_flashed_messages() %} 
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <span style="color: red;">[{{ message }}]</span>
+            <br> 
+            {% endfor %}
+        </ul>
+        {% endif %} 
+        {% endwith %}
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+{% endblock %}
