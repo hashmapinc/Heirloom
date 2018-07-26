@@ -19,7 +19,7 @@ dev: install
 	source env/bin/activate; \
 	export FLASK_APP=heirloom/ui/main.py; \
 	export FLASK_DEBUG=1; \
-	python -m flask run --port 8123 --host '0.0.0.0'
+	python -m flask run --host '0.0.0.0'
 
 # build the image
 build: 
