@@ -31,5 +31,5 @@ def signup():
 
   else:
     # handle an invalid form
-    return render_template('signup.html', title='Heirloom Signup', form=form)
+    return render_template('signup.jinja2', title='Heirloom Signup', form=form)
 #==============================================================================

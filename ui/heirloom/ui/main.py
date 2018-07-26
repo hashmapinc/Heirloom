@@ -1,7 +1,14 @@
 from heirloom.ui import app, db
+
+# import models
+from heirloom.ui.models.user import User
+from heirloom.ui.models.organization import Organization
+
+# import blueprints
 from heirloom.ui.routes.login import bp as login_blueprint
 from heirloom.ui.routes.home import bp as home_blueprint
 from heirloom.ui.routes.signup import bp as signup_blueprint
+from heirloom.ui.routes.organization import bp as org_blueprint
 
 #==============================================================================
 # Main 
@@ -12,6 +19,7 @@ db.create_all()
 app.register_blueprint(login_blueprint) # default route
 app.register_blueprint(home_blueprint, url_prefix='/home')
 app.register_blueprint(signup_blueprint, url_prefix='/signup')
+app.register_blueprint(org_blueprint, url_prefix='/org')
 
 # Run app
 if __name__ == '__main__':

@@ -45,9 +45,25 @@
         <span class="mdl-layout-title">{{title}}</span>
         <nav class="mdl-navigation">
           {% if current_user.is_anonymous %}
+            <!-- default anonymous links -->
             <a class="mdl-navigation__link" href="{{ url_for('login.login') }}">Login</a>
             <a class="mdl-navigation__link" href="{{ url_for('signup.signup') }}">Signup</a>
           {% else %}
+
+            <!-- admin links -->
+            {% if current_user.get_role_name() == "Admin" %}
+            <a class="mdl-navigation__link" href="{{ url_for('organization.organization') }}">Organizations</a>
+            {% endif %}
+
+            <!-- buyer links -->
+            {% if current_user.get_role_name() == "Buyer" %}
+            {% endif %}
+
+            <!-- seller links -->
+            {% if current_user.get_role_name() == "Seller" %}
+            {% endif %}
+
+            <!-- default signed-in links -->
             <a class="mdl-navigation__link" href="{{ url_for('home.home') }}">Home</a>
             <a class="mdl-navigation__link" href="{{ url_for('login.logout') }}">Logout</a>
           {% endif %}

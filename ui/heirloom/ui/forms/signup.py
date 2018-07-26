@@ -2,15 +2,14 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, DataRequired, Email, EqualTo
 
-from heirloom.ui.models.user import User
+from heirloom.ui.models.user import User, roles
 
 class SignupForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
-    role = SelectField(u'User Role', choices=[('0', 'User'), ('1', 'Vendor'), ('2', 'Admin')], 
-        default=0, validators=[DataRequired()])
+    role = SelectField(u'User Role', choices=roles, default=0, validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):

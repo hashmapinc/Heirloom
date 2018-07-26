@@ -10,7 +10,7 @@ install: venv
 	pip install -r heirloom/ui/requirements.txt
 
 # get venv-activated shell
-shell: install
+shell:
 	source env/bin/activate; \
 	python;
 
