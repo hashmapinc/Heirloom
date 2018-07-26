@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-red.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/getmdl-select.min.css')}}">
     <style>
       #view-source {
         position: fixed;
@@ -59,5 +60,6 @@
       </main>
     </div>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script defer src="{{url_for('static', filename='js/getmdl-select.min.js')}}"></script>
   </body>
 </html>

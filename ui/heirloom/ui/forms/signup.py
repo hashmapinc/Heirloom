@@ -10,7 +10,7 @@ class SignupForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
     role = SelectField(u'User Role', choices=[('0', 'User'), ('1', 'Vendor'), ('2', 'Admin')], 
-        coerce=int, default=0, validators=[DataRequired()])
+        default=0, validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
