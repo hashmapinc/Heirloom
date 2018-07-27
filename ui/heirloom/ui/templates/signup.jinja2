@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.jinja2" %} {% block content %}
 <div class="mdl-grid">
     <div class="mdl-layout-spacer"></div>
     <div class="mdl-cell mdl-cell--4-col">
@@ -7,7 +7,7 @@
             {{ form.hidden_tag() }}
 
             <!-- username -->
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
                 {{ form.username(size=32, class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label" for="sample3">{{ form.username.label }}</label>
             </div>
@@ -20,7 +20,7 @@
             <br>
 
             <!-- email -->
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
                 {{ form.email(size=64, class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label" for="sample3">{{ form.email.label }}</label>
             </div>
@@ -33,7 +33,7 @@
             <br>
 
             <!-- password 1 -->
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
                 {{ form.password(size=32, class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label" for="sample3">{{ form.password.label }}</label>
             </div>
@@ -46,7 +46,7 @@
             <br>
 
             <!-- password 2 -->
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
                 {{ form.password2(size=32, class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label" for="sample3">{{ form.password2.label }}</label>
             </div>
@@ -59,7 +59,7 @@
             <br>
 
             <!-- role -->
-            <div class="mdl-textfield mdl-js-textfield getmdl-select">
+            <div class="mdl-textfield mdl-js-textfield getmdl-select wide">
                 {{ form.role(class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label" for="sample3">{{ form.role.label }}</label>
             </div>
@@ -67,24 +67,10 @@
             <br>
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-            
-
-            <!--div class="mdl-textfield mdl-js-textfield getmdl-select">
-                <input class="mdl-textfield__input" value="" id="country" readonly/>
-                <input value="" type="hidden" name="country" />
-                <label class="mdl-textfield__label" for="country">Country</label>
-                <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="country">
-                    <li class="mdl-menu__item" data-val="BLR">Belarus</li>
-                    <li class="mdl-menu__item" data-val="BRA">Brazil</li>
-                    <li class="mdl-menu__item" data-val="FRA">France</li>
-                    <li class="mdl-menu__item" data-val="DEU">Germany</li>
-                    <li class="mdl-menu__item" data-val="RUS">Russia</li>
-                </ul>
-            </div-->
 
             <br>
             <br> 
-            {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored') }}
+            {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored wide') }}
         </form>
 
 

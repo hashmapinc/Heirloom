@@ -1,0 +1,133 @@
+{% extends "base.jinja2" %} {% block content %}
+
+<div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--6-col">
+        <h2>Users</h2>
+        <br><br><br>
+
+        <!-- table of users -->         
+        <table class="mdl-data-table mdl-js-data-table wide">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Username</th>
+                    <th class="mdl-data-table__cell--non-numeric">Email</th>
+                    <th class="mdl-data-table__cell--non-numeric">Organization</th>
+                    <th class="mdl-data-table__cell--non-numeric">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">{{ user.username }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ user.email }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ user.get_organization_name() or '--' }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ user.get_role_name() }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+
+
+<!-- add user button --> 
+<button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bottom-right-fab">
+  <i class="material-icons">add</i>
+</button>
+
+<!-- new user form --> 
+<dialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">New User</h4>
+    <form action="" method="post" novalidate id="userForm">
+        {{ form.hidden_tag() }}
+
+        <div class="mdl-dialog__content">
+            <!-- username -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
+                {{ form.username(size=32, class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.username.label }}</label>
+            </div>
+            {% for error in form.username.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <br>
+            <br>
+
+            <!-- email -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
+                {{ form.email(size=64, class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.email.label }}</label>
+            </div>
+            {% for error in form.email.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            
+            <br>
+            <br>
+
+            <!-- password 1 -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
+                {{ form.password(size=32, class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.password.label }}</label>
+            </div>
+            {% for error in form.password.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            
+            <br>
+            <br>
+
+            <!-- password 2 -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
+                {{ form.password2(size=32, class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.password2.label }}</label>
+            </div>
+            {% for error in form.password2.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            
+            <br>
+            <br>
+
+            <!-- organization -->
+            <div class="mdl-textfield mdl-js-textfield getmdl-select wide">
+                {{ form.organization(class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.organization.label }}</label>
+            </div>
+            {% for error in form.organization.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <!-- role -->
+            <div class="mdl-textfield mdl-js-textfield getmdl-select wide">
+                {{ form.role(class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.role.label }}</label>
+            </div>
+            {% for error in form.role.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <br>
+            <br>
+
+            {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored wide') }}
+            <br>
+            <br>
+            <button type="button" class="mdl-button mdl-button--raised close wide">Cancel</button>
+        </div>
+    </form>
+</dialog>
+
+<!-- page logic --> 
+<script defer src="{{url_for('static', filename='js/user.js')}}"></script>
+
+{% endblock %}
