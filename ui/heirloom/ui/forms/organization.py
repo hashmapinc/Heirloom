@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError
 import phonenumbers
 
-
+# form for creating new organizations
 class OrganizationForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])
