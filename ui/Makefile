@@ -9,13 +9,20 @@ install: venv
 	source env/bin/activate; \
 	pip install -r heirloom/ui/requirements.txt
 
+# migrate database
+db:
+	export FLASK_APP=heirloom/ui/main.py; \
+	export FLASK_DEBUG=1; \
+	flask db migrate; \
+	flask db upgrade
+
 # get venv-activated shell
-shell:
+shell: db
 	source env/bin/activate; \
 	python;
 
 # run local dev server
-dev: install
+dev: install db
 	source env/bin/activate; \
 	export FLASK_APP=heirloom/ui/main.py; \
 	export FLASK_DEBUG=1; \

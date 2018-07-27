@@ -6,6 +6,7 @@
         <br><br><br>
         {% for org in organizations %}
             <p><strong>{{ org.name }}</strong><p>
+            <p>{{ org.phone or '--' }}</p>
             <p>{{ org.address }}</p>
             <br><br>
         {% endfor %}
