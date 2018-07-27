@@ -26,6 +26,8 @@ class User(UserMixin, db.Model):
     organization_id = db.Column(db.Integer, db.ForeignKey('organizations.id'))
     role = db.Column(db.Integer, nullable=False)
 
+    authored_purchase_orders = db.relationship('PurchaseOrder', backref='author', lazy='dynamic')
+
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
