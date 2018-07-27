@@ -38,6 +38,12 @@ class User(UserMixin, db.Model):
         except:
             return ''
 
+    def get_organization_name(self):
+        try:
+            return self.organization.name
+        except:
+            return ''
+
     def __repr__(self):
         return '<User id={}, username={}, email={}, role={}, organization={}>'.format(
             self.id, self.username, self.email, self.role, self.organization.name)

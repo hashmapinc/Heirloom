@@ -21,7 +21,7 @@
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">{{ user.username }}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{ user.email }}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{ user.organization or '--' }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ user.get_organization_name() or '--' }}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{ user.get_role_name() }}</td>
                 </tr>
                 {% endfor %}
@@ -95,6 +95,16 @@
             
             <br>
             <br>
+
+            <!-- organization -->
+            <div class="mdl-textfield mdl-js-textfield getmdl-select wide">
+                {{ form.organization(class_='mdl-textfield__input') }}
+                <label class="mdl-textfield__label" for="sample3">{{ form.organization.label }}</label>
+            </div>
+            {% for error in form.organization.errors %}
+            <br>
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
 
             <!-- role -->
             <div class="mdl-textfield mdl-js-textfield getmdl-select wide">

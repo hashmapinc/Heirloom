@@ -22,6 +22,7 @@ def user():
 
     # validate form
     form = UserForm()
+    form.organization.choices = [(0, "None")] + [(o.id, o.name) for o in Organization.query.order_by('name')]
     if form.validate_on_submit():
         # form is valid, create the new user
         if form.organization.data:
@@ -30,7 +31,7 @@ def user():
                 role=form.role.data, organization=org)
         else:
             user = User(username=form.username.data, email=form.email.data, role=form.role.data)
-            
+
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
