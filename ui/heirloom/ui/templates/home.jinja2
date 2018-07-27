@@ -1,9 +1,7 @@
 {% extends "base.jinja2" %} {% block content %}
 <div class="mdl-grid">
-    <div class="mdl-layout-spacer"></div>
-    <div mdl-cell mdl-cell--4-col>
-        <h3>Welcome to Heirloom, {{ current_user.username }}!</h3>
+    <div class="mdl-cell mdl-cell--12-col center">
+        <h2>Welcome to Heirloom, {{ current_user.username }}!</h2>
     </div>
-    <div class="mdl-layout-spacer"></div>
 </div>
 {% endblock %}

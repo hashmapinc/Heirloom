@@ -7,5 +7,6 @@ showDialogButton.addEventListener('click', function () {
     dialog.showModal();
 });
 dialog.querySelector('.close').addEventListener('click', function () {
+    console.log("closing dialog")
     dialog.close();
 });
