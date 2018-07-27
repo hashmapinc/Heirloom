@@ -4,19 +4,35 @@
 
 <div class="mdl-grid">
     <div class="mdl-layout-spacer"></div>
-    <div class="mdl-cell mdl-cell--4-col">
+    <div class="mdl-cell mdl-cell--6-col">
         <h2>Organizations</h2>
         <br><br><br>
-        {% for org in organizations %}
-            <p><strong>{{ org.name }}</strong><p>
-            <p>{{ org.phone or '--' }}</p>
-            <p>{{ org.address }}</p>
-            <br><br>
-        {% endfor %}
+
+        <table class="mdl-data-table mdl-js-data-table wide">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th class="mdl-data-table__cell--non-numeric">Phone</th>
+                    <th class="mdl-data-table__cell--non-numeric">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for org in organizations %}
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">{{ org.name }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ org.phone or '--' }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ org.address }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
     <div class="mdl-layout-spacer"></div>
 </div>
 
+
+<!-- admin options -->
+{% if current_user.get_role_name() == "Admin" %}
 <!-- add organization button --> 
 <button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored md-fab-bottom-right">
   <i class="material-icons">add</i>
@@ -65,13 +81,15 @@
 
             <br>
             <br>
-        </div>
-        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
-            {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored') }}
-            <button type="button" class="mdl-button close">Cancel</button>
+
+            {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored wide') }}
+            <br>
+            <br>
+            <button type="button" class="mdl-button mdl-button--raised close wide">Cancel</button>
         </div>
     </form>
 </dialog>
+{% endif %}
 
 <!-- page logic --> 
 <script defer src="{{url_for('static', filename='js/organization.js')}}"></script>

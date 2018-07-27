@@ -2,11 +2,11 @@
 <div class="mdl-grid">
     <div class="mdl-layout-spacer"></div>
     <div class="mdl-cell mdl-cell--4-col">
-        <h3>Sign In</h3>
+        <h3>Login</h3>
         <form action="" method="post" novalidate id="loginForm">
             {{ form.hidden_tag() }}
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
                  {{ form.username(size=32, class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label" for="sample3">{{ form.username.label }}</label>
             </div>
@@ -17,7 +17,7 @@
             
             <br><br>
             
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
                 {{ form.password(size=32, class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label" for="sample3">{{ form.password.label }}</label>
             </div>
@@ -35,7 +35,7 @@
 
             <br><br><br>
             
-            {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored') }}
+            {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored wide') }}
         </form>
 
         {% with messages = get_flashed_messages() %} 

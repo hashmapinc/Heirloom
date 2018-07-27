@@ -18,6 +18,9 @@ class OrganizationForm(FlaskForm):
             if not (phonenumbers.is_valid_number(input_number)):
                 raise ValidationError('Invalid phone number.')
         except:
-            input_number = phonenumbers.parse("+1"+field.data)
-            if not (phonenumbers.is_valid_number(input_number)):
+            try:
+                input_number = phonenumbers.parse("+1"+field.data)
+                if not (phonenumbers.is_valid_number(input_number)):
+                    raise ValidationError('Invalid phone number.')
+            except:
                 raise ValidationError('Invalid phone number.')

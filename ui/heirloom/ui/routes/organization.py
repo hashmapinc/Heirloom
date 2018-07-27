@@ -18,7 +18,11 @@ def organization():
     # validate form
     form = OrganizationForm()
     if form.validate_on_submit():
-        # form is valid, create the organization
+        # form is valid, check that current user is an admin
+        if current_user.get_role_name() is not 'Admin':
+            return redirect(url_for('organization.organization'))
+        
+        # user is admin, create the organization
         org = Organization(name=form.name.data, address=form.address.data, phone=form.phone.data)
         db.session.add(org)
         db.session.commit()
