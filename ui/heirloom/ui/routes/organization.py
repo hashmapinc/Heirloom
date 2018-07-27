@@ -19,7 +19,7 @@ def organization():
     form = OrganizationForm()
     if form.validate_on_submit():
         # form is valid, create the organization
-        org = Organization(name=form.name.data, address=form.address.data)
+        org = Organization(name=form.name.data, address=form.address.data, phone=form.phone.data)
         db.session.add(org)
         db.session.commit()
         flash("Succesfully created organization")
@@ -27,7 +27,9 @@ def organization():
 
     else:
         # handle an invalid form
-        return render_template('organization.jinja2', title='Organizations', form=form, organizations=Organization.query.all())
+        return render_template('organization.jinja2', title='Organizations', form=form,
+            organizations=Organization.query.all())
     
-    return render_template('organization.jinja2', title='Organizations', form=form, organizations=Organization.query.all())
+    return render_template('organization.jinja2', title='Organizations', form=form, 
+        organizations=Organization.query.all())
 # ==============================================================================
