@@ -15,7 +15,7 @@ class UserForm(FlaskForm):
                               DataRequired(), EqualTo('password')])
     role = SelectField(u'User Role', choices=roles,
                        default=0, validators=[DataRequired()])
-    submit = SubmitField('Create User')
+    submit = SubmitField('Create')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()

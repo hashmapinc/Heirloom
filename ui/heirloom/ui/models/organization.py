@@ -8,6 +8,7 @@ class Organization(db.Model):
     name = db.Column(db.String(64), index=True)
     address = db.Column(db.String(120))
     phone = db.Column(db.String(10))
+    
     members = db.relationship('User', backref='organization', lazy='dynamic')
 
     def __repr__(self):

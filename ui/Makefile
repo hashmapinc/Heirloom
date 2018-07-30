@@ -11,6 +11,7 @@ install: venv
 
 # migrate database
 db:
+	source env/bin/activate; \
 	export FLASK_APP=heirloom/ui/main.py; \
 	export FLASK_DEBUG=1; \
 	flask db migrate; \
