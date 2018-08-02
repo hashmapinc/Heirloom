@@ -11,7 +11,5 @@ bp = Blueprint('home', __name__)
 @bp.route('/')
 @login_required
 def home():
-  flash("You are home")
-  flash("You are home")
   return render_template('home.jinja2', title='Heirloom Home')
 #==============================================================================

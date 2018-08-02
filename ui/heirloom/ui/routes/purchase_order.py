@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, flash, redirect
+from flask import Blueprint, render_template, url_for, flash, redirect, request
 from flask_login import current_user, login_required
 
 from heirloom.ui import db
@@ -38,4 +38,21 @@ def purchase_order():
         return render_template('purchase_order.jinja2', form=form, POs=PurchaseOrder.query.all())
 
     return render_template('purchase_order.jinja2', form=form, POs=PurchaseOrder.query.all())
+
+
+# endpiont for getting purchase order details
+@bp.route('/<po_id>', methods=['GET'])
+@login_required
+def details(po_id):
+    # validate the po_id
+    po = PurchaseOrder.query.get(po_id)
+
+    if po is None:
+        # handle an invalid purchase order ID
+        flash("Purchase Order not found", category="error")
+        return redirect(url_for('purchase_order.purchase_order'))
+
+    else:
+        # handle a valid purchase order ID
+        return render_template('po_details.jinja2', po=po)
 # ==============================================================================

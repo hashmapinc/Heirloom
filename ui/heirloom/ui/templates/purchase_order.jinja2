@@ -23,7 +23,7 @@
             <tbody>
                 {% for po in POs %}
                 <tr>
-                    <td class="mdl-data-table__cell--non-numeric">{{ po.title }}</td>
+                    <td class="mdl-data-table__cell--non-numeric"><a href="{{url_for('purchase_order.details', po_id=po.id)}}"> {{ po.title }}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{ po.timestamp }}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{ po.order_details}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{ po.author.username }}</td>
@@ -47,7 +47,7 @@
 
 <!-- new order form --> 
 <dialog class="mdl-dialog">
-    <h4 class="mdl-dialog__title">New User</h4>
+    <h4 class="mdl-dialog__title">New Purchase Order</h4>
     <form action="" method="post" novalidate id="userForm">
         {{ form.hidden_tag() }}
 
