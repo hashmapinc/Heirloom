@@ -40,7 +40,7 @@ def user():
 
     else:
         # handle an invalid form
-        return render_template('user.jinja2', form=form, users=User.query.all())
+        return render_template('user.jinja2', title='Users', form=form, users=User.query.all())
 
-    return render_template('user.jinja2', form=form, users=User.query.all())
+    return render_template('user.jinja2', title='Users', form=form, users=User.query.all())
 # ==============================================================================

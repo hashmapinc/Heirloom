@@ -2,21 +2,24 @@ from datetime import datetime
 
 from heirloom.ui import db
 
-order_statuses = [
-    (0, ''),
-    (1, 'Submitted'),
-    (2, 'Accepted'),
-    (3, 'In Progress'),
-    (4, 'Declined'),
-    (5, 'Finished'),
-    (6, 'Declined')
-]
 
-payment_statuses = [
-    (0, ''),
-    (1, 'Unpaid'),
-    (2, 'Paid')
-]
+order_status_codes = {
+    '':             0,
+    'Submitted':    1,
+    'Accepted':     2,
+    'In Progress':  3,
+    'Declined':     4,
+    'Finished':     5
+}
+order_statuses = [(order_status_codes[key], key) for key in order_status_codes]
+
+
+payment_status_codes = {
+    '':         0,
+    'Unpaid':   1,
+    'Paid':     2
+}
+payment_statuses = [(payment_status_codes[key], key) for key in payment_status_codes]
 
 # class for structuring a purchase order
 class PurchaseOrder(db.Model):

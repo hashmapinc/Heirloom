@@ -2,47 +2,42 @@
 
 <div class="mdl-grid">
     <div class="mdl-layout-spacer"></div>
-    <div class="mdl-cell mdl-cell--4-col">
-        <h2>Purchase Order: {{po.title}}</h2>
+    <div class="mdl-cell mdl-cell--6-col">
+        <h3>{{po.title}}</h3>
         <ul class="demo-list-item mdl-list">
             <li class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
-                ID: {{ po.id }}
+                <strong>Details:</strong> {{ po.order_details}}
                 </span>
             </li>
             <li class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
-                Created: {{ po.timestamp }}
+                <strong>Created:</strong> {{ po.timestamp }}
                 </span>
             </li>
             <li class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
-                Details: {{ po.order_details}}
+                <strong>Created by:</strong> {{ po.author.username }} | {{ po.author.email }} 
                 </span>
             </li>
             <li class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
-                Created by: {{ po.author.username }} | {{ po.author.email }} 
+                <strong>Buyer:</strong> {{ po.buying_organization.name }}
                 </span>
             </li>
             <li class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
-                Buyer: {{ po.buying_organization.name }}
+                <strong>Seller:</strong> {{ po.selling_organization.name }}
                 </span>
             </li>
             <li class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
-                Seller: {{ po.selling_organization.name }}
+                <strong>Order Status:</strong> {{ po.get_order_status_name() or '--' }}
                 </span>
             </li>
             <li class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
-                Order Status: {{ po.get_order_status_name() or '--' }}
-                </span>
-            </li>
-            <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                Payment Status: {{ po.get_payment_status_name() or '--' }}
+                <strong>Payment Status:</strong> {{ po.get_payment_status_name() or '--' }}
                 </span>
             </li>
         </ul>
@@ -51,12 +46,21 @@
 </div>
 
 
-<!-- add order button --> 
-<button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bottom-right-fab">
-  <i class="material-icons">edit</i>
-</button>
+<!-- fab container --> 
+<div class="bottom-right-fab">
+    <!-- accept order button --> 
+    <a type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="{{url_for('purchase_order.accept', po_id=po.id)}}">
+    <i class="material-icons">done</i>
+    </a>
 
-<!-- new order form --> 
+    <!-- edit order button --> 
+    <button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+    <i class="material-icons">edit</i>
+    </button>
+</div>
+
+
+<!-- edit order form --> 
 <dialog class="mdl-dialog">
     <h4 class="mdl-dialog__title">New User</h4>
     <form action="" method="post" novalidate id="userForm">
