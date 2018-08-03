@@ -35,12 +35,12 @@ def user():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash("Succesfully created new user")
+        flash("Succesfully created new user", category="success")
         return redirect(url_for('user.user'))
 
     else:
         # handle an invalid form
-        return render_template('user.jinja2', form=form, users=User.query.all())
+        return render_template('user.jinja2', title='Users', form=form, users=User.query.all())
 
-    return render_template('user.jinja2', form=form, users=User.query.all())
+    return render_template('user.jinja2', title='Users', form=form, users=User.query.all())
 # ==============================================================================

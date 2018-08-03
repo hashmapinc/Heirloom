@@ -1,0 +1,49 @@
+{% extends "base.jinja2" %} {% block content %}
+
+<div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--6-col">
+        <h3>Transaction {{txn.id}}</h3>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--6-col center">
+        <table class="mdl-data-table mdl-js-data-table wide">
+            <tbody>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Created</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ txn.timestamp }}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Purchase Order</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric"><a href="{{url_for('purchase_order.details', po_id=txn.purchase_order.id)}}">{{ txn.purchase_order.title }}</a></td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Type</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ txn.type }}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Value</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ txn.timestamp }}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Notes</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ txn.timestamp }}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Created by</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ txn.author.username }} | {{ txn.author.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+
+<!-- page logic --> 
+<script defer src="{{url_for('static', filename='js/transaction_details.js')}}"></script>
+
+{% endblock %}

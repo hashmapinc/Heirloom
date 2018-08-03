@@ -1,0 +1,42 @@
+.wide { 
+    width: 100%;
+}
+
+.center {
+    text-align: center;
+}
+
+.bottom-right-fab {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+}
+
+#flash_msg_container {
+    position: fixed;
+    display: block;
+    right: 0;
+    top: 100;
+    margin: 40px;
+    z-index: 900;
+}
+
+.mdl-chip.flash-warning {
+    background-color: #FF9800;
+}
+
+.mdl-chip.flash-error {
+    background-color: #f44336;
+}
+
+.mdl-chip.flash-success {
+    background-color: #4CAF50;
+}
+
+.bold {
+  font-weight: bold;
+}

@@ -33,8 +33,8 @@ def login():
     # check user exists and password is correct
     if user is None or not user.check_password(form.password.data):
       # user is invalid
-      flash('Invalid username or password')
-      return render_template('login.jinja2', title='Heirloom Login', form=form)
+      flash('Invalid username or password', category="error")
+      return render_template('login.jinja2', title='Login', form=form)
     
     # user is valid. Login and redirect
     login_user(user, remember=form.remember_me.data)
@@ -48,7 +48,7 @@ def login():
   
   else:
     # handle an invalid form
-    return render_template('login.jinja2', title='Heirloom Login', form=form)
+    return render_template('login.jinja2', title='Login', form=form)
 
 # set logout route
 @bp.route('/logout')
