@@ -68,8 +68,6 @@
             <a class="mdl-navigation__link" href="{{ url_for('purchase_order.purchase_order') }}">Purchase Orders</a>
             {% endif %}
 
-            <div class="mdl-layout-spacer"></div>
-
             <!-- default logout link -->
             <a class="mdl-navigation__link" href="{{ url_for('login.logout') }}">Logout</a>
           {% endif %}
@@ -78,7 +76,7 @@
       <main class="mdl-layout__content">
         <div id="flash_msg_container">
           {% for category, message in get_flashed_messages(with_categories=true) %}
-            <button type="button" class="mdl-chip">
+            <button type="button" class="mdl-chip flash-{{category}}">
               <span class="mdl-chip__text">{{message}}</span>
             </button>
             <br>

@@ -63,6 +63,39 @@ def details(po_id):
 def accept(po_id):
     # check that the current user is an admin
     if current_user.get_role_name() is not 'Seller':
+        flash("You do not have permission to accept this order.", category="warning")
+        return redirect(url_for('home.home'))
+
+    # validate the po_id
+    po = PurchaseOrder.query.get(po_id)
+
+    if po is None:
+        # handle an invalid purchase order ID
+        flash("Purchase Order not found", category="error")
+        return redirect(url_for('purchase_order.purchase_order'))
+
+    if po.selling_organization.id is not current_user.organization.id:
+        flash("You do not have permission to accept this order.", category="warning")
+        return redirect(url_for('purchase_order.purchase_order'))
+
+    if po.selling_organization.order_status is not ORDER_STATUS['Submitted']:
+        flash("You can only accept purchase orders with a status of " + ORDER_STATUS['Submitted'], category="warning")
+        return redirect(url_for('purchase_order.purchase_order'))
+    
+    # handle a valid purchase order ID
+    po.order_status = ORDER_STATUS['Accepted']
+    db.session.add(po)
+    db.session.commit()
+    flash("Succesfully accepted " + po.title)
+    return redirect(url_for('purchase_order.details', po_id=po.id))
+
+
+# endpiont for adding a transaction to a purchase order
+@bp.route('/<po_id>/transaction', methods=['POST'])
+@login_required
+def add_transaction(po_id):
+    # check that the current user is an admin
+    if current_user.get_role_name() is not 'Seller':
         flash("You do not have permission to accept this order.")
         return redirect(url_for('home.home'))
 
@@ -77,7 +110,12 @@ def accept(po_id):
     if po.selling_organization.id is not current_user.organization.id:
         flash("You do not have permission to accept this order.")
         return redirect(url_for('purchase_order.purchase_order'))
-    
+
+    if po.selling_organization.order_status is not ORDER_STATUS['Submitted']:
+        flash("You can only accept purchase orders with a status of " +
+              ORDER_STATUS['Submitted'])
+        return redirect(url_for('purchase_order.purchase_order'))
+
     # handle a valid purchase order ID
     po.order_status = ORDER_STATUS['Accepted']
     db.session.add(po)

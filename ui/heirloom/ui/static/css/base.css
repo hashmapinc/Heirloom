@@ -24,3 +24,15 @@
     margin: 40px;
     z-index: 900;
 }
+
+.mdl-chip.flash-warning {
+    background-color: #FF9800;
+}
+
+.mdl-chip.flash-error {
+    background-color: #f44336;
+}
+
+.mdl-chip.flash-success {
+    background-color: #4CAF50;
+}
