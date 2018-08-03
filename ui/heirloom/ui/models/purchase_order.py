@@ -39,6 +39,8 @@ class PurchaseOrder(db.Model):
         'Organization', foreign_keys='PurchaseOrder.buying_organization_id')
     selling_organization = db.relationship(
         'Organization', foreign_keys='PurchaseOrder.selling_organization_id')
+    transactions = db.relationship(
+        'Transaction', backref='purchase_order', lazy='dynamic')
 
     def get_order_status_name(self):
         try:

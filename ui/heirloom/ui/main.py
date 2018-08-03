@@ -4,6 +4,7 @@ from heirloom.ui import app, db
 from heirloom.ui.models.user import User
 from heirloom.ui.models.organization import Organization
 from heirloom.ui.models.purchase_order import PurchaseOrder
+from heirloom.ui.models.transaction import Transaction
 
 # import blueprints
 from heirloom.ui.routes.login import bp as login_blueprint

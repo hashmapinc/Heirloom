@@ -4,43 +4,45 @@
     <div class="mdl-layout-spacer"></div>
     <div class="mdl-cell mdl-cell--6-col">
         <h3>{{po.title}}</h3>
-        <ul class="demo-list-item mdl-list">
-            <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                <strong>Details:</strong> {{ po.order_details}}
-                </span>
-            </li>
-            <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                <strong>Created:</strong> {{ po.timestamp }}
-                </span>
-            </li>
-            <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                <strong>Created by:</strong> {{ po.author.username }} | {{ po.author.email }} 
-                </span>
-            </li>
-            <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                <strong>Buyer:</strong> {{ po.buying_organization.name }}
-                </span>
-            </li>
-            <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                <strong>Seller:</strong> {{ po.selling_organization.name }}
-                </span>
-            </li>
-            <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                <strong>Order Status:</strong> {{ po.get_order_status_name() or '--' }}
-                </span>
-            </li>
-            <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                <strong>Payment Status:</strong> {{ po.get_payment_status_name() or '--' }}
-                </span>
-            </li>
-        </ul>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--6-col center">
+        <table class="mdl-data-table mdl-js-data-table wide">
+            <tbody>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Details</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ po.order_details or '--' }}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Created</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ po.timestamp }}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Created by</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ po.author.username }} | {{ po.author.email }}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Buyer</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ po.buying_organization.name}}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Seller</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ po.selling_organization.name}}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Order Status</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ po.get_order_status_name() or '--' }}</td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><strong>Payment Status</strong></td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ po.get_payment_status_name() or '--' }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="mdl-layout-spacer"></div>
 </div>
