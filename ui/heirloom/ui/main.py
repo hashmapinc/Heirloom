@@ -13,6 +13,7 @@ from heirloom.ui.routes.signup import bp as signup_blueprint
 from heirloom.ui.routes.organization import bp as org_blueprint
 from heirloom.ui.routes.user import bp as user_blueprint
 from heirloom.ui.routes.purchase_order import bp as PO_blueprint
+from heirloom.ui.routes.transaction import bp as transaction_blueprint
 
 #==============================================================================
 # Main 
@@ -26,6 +27,7 @@ app.register_blueprint(signup_blueprint, url_prefix='/signup')
 app.register_blueprint(org_blueprint, url_prefix='/org')
 app.register_blueprint(user_blueprint, url_prefix='/user')
 app.register_blueprint(PO_blueprint, url_prefix='/po')
+app.register_blueprint(transaction_blueprint, url_prefix='/transaction')
 
 # Run app
 if __name__ == '__main__':

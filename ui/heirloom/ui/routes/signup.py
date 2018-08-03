@@ -26,7 +26,7 @@ def signup():
     user.set_password(form.password.data)
     db.session.add(user)
     db.session.commit()
-    flash('Congratulations, you are now a registered user!')
+    flash('Congratulations, you are now a registered user!', category="success")
     return redirect(url_for('login.login'))
 
   else:

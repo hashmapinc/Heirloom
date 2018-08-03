@@ -30,7 +30,7 @@ def purchase_order():
             selling_organization=Organization.query.get(form.selling_organization.data))
         db.session.add(po)
         db.session.commit()
-        flash("Succesfully created Purchase Order")
+        flash("Succesfully created Purchase Order", category="success")
         return redirect(url_for('purchase_order.purchase_order'))
 
     else:
@@ -86,6 +86,6 @@ def accept(po_id):
     po.order_status = ORDER_STATUS['Accepted']
     db.session.add(po)
     db.session.commit()
-    flash("Succesfully accepted " + po.title)
+    flash("Succesfully accepted " + po.title, category="success")
     return redirect(url_for('purchase_order.details', po_id=po.id))
 # ==============================================================================

@@ -26,7 +26,7 @@ def organization():
         org = Organization(name=form.name.data, address=form.address.data, phone=form.phone.data)
         db.session.add(org)
         db.session.commit()
-        flash("Succesfully created organization")
+        flash("Succesfully created organization", category="success")
         return redirect(url_for('organization.organization'))
 
     else:

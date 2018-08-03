@@ -35,7 +35,7 @@ def user():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash("Succesfully created new user")
+        flash("Succesfully created new user", category="success")
         return redirect(url_for('user.user'))
 
     else:

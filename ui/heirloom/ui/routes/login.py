@@ -33,7 +33,7 @@ def login():
     # check user exists and password is correct
     if user is None or not user.check_password(form.password.data):
       # user is invalid
-      flash('Invalid username or password')
+      flash('Invalid username or password', category="error")
       return render_template('login.jinja2', title='Login', form=form)
     
     # user is valid. Login and redirect

@@ -67,7 +67,7 @@
 
             <!-- order details -->
             <div class="mdl-textfield mdl-js-textfield wide">
-                {{ form.order_details(size=64, class_='mdl-textfield__input') }}
+                {{ form.order_details(class_='mdl-textfield__input') }}
                 <label class="mdl-textfield__label">{{ form.order_details.label }}</label>
             </div>
             {% for error in form.order_details.errors %}
