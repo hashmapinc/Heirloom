@@ -2,6 +2,14 @@
     width: 100%;
 }
 
+.tall {
+    height: 100%;
+}
+
+.half-view-height {
+    height: 50vh;
+}
+
 .center {
     text-align: center;
 }
