@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, flash, redirect, request
+from flask import Blueprint, render_template, url_for, flash, redirect, request, jsonify
 from flask_login import current_user, login_required
 
 from heirloom.ui import db
@@ -55,6 +55,23 @@ def details(po_id):
     else:
         # handle a valid purchase order ID
         return render_template('po_details.jinja2', title='Purchase Orders > Details', po=po)
+
+
+# endpiont for getting all transactions from a purchase order
+@bp.route('/<po_id>/transactions', methods=['GET'])
+@login_required
+def transactions(po_id):
+    # validate the po_id
+    po = PurchaseOrder.query.get(po_id)
+
+    if po is None:
+        # handle an invalid purchase order ID
+        return "Purchase Order not found", 400
+
+    else:
+        # handle a valid purchase order ID
+        transactions = [t.to_dict() for t in po.transactions] # convert to serializable dict list
+        return jsonify(transactions), 200
 
 
 # endpiont for accepting a purchase order
