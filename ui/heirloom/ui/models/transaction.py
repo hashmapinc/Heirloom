@@ -27,4 +27,4 @@ class Transaction(db.Model):
 
     def __repr__(self):
         return '<Transaction id={}, timestamp={}, notes={}, author={}, type={}, value={}, purchase_order={}>'.format(
-            self.id, self.timestamp, self.notes, self.author, self.type, self.value, self.purchase_order())
+            self.id, self.timestamp, self.notes, self.author, self.type, self.value, self.purchase_order)

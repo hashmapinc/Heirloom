@@ -95,7 +95,7 @@ def accept(po_id):
         flash("You do not have permission to accept this order.", category="warning")
         return redirect(url_for('purchase_order.purchase_order'))
 
-    if po.selling_organization.order_status is not ORDER_STATUS['Submitted']:
+    if po.order_status is not ORDER_STATUS['Submitted']:
         flash("You can only accept purchase orders with a status of " + ORDER_STATUS['Submitted'], category="warning")
         return redirect(url_for('purchase_order.purchase_order'))
     
