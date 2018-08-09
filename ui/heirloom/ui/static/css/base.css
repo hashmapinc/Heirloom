@@ -6,6 +6,15 @@
     height: 100%;
 }
 
+.no-scroll {
+    overflow: hidden
+}
+
+html,body {
+  height:100%;
+  margin:0;
+}
+
 .half-view-height {
     height: 50vh;
 }
@@ -25,10 +34,10 @@
 }
 
 #flash_msg_container {
-    position: fixed;
+    position: absolute;
     display: block;
-    right: 0;
-    top: 100;
+    right: 0px;
+    top: 10px;
     margin: 40px;
     z-index: 900;
 }
@@ -47,4 +56,22 @@
 
 .bold {
   font-weight: bold;
+}
+
+.overlay {
+    position: absolute;
+    display: table;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.background-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
