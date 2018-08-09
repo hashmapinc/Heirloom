@@ -1,43 +1,97 @@
-{% extends "base.jinja2" %} {% block content %}
-<div class="mdl-grid">
-    <div class="mdl-layout-spacer"></div>
-    <div class="mdl-cell mdl-cell--4-col">
-        <h3>Login</h3>
-        <form action="" method="post" novalidate id="loginForm">
-            {{ form.hidden_tag() }}
+<!doctype html>
+<html lang="en" class="no-scroll">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Heirloom</title>
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
-                 {{ form.username(size=32, class_='mdl-textfield__input') }}
-                <label class="mdl-textfield__label" for="sample3">{{ form.username.label }}</label>
+    <link rel="shortcut icon" href="{{url_for('static', filename='favicons/favicon.ico')}}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-red.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/getmdl-select.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
+    
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script defer src="{{url_for('static', filename='js/getmdl-select.min.js')}}"></script>
+  </head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base tall wide">
+      <main class="mdl-layout__content tall wide">
+          <div class="background-div" id="pts-container"></div>
+
+          <div id="flash_msg_container">
+          {% for category, message in get_flashed_messages(with_categories=true) %}
+              <button type="button" class="mdl-chip flash-{{category}}">
+              <span class="mdl-chip__text">{{message}}</span>
+              </button>
+              <br>
+          {% endfor %}
+          </div> 
+
+          <div class="overlay tall wide no-scroll">
+            <div class="mdl-grid tall">
+              <div class="mdl-layout-spacer"></div>
+              <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--middle" >
+                  <span class="mdl-layout-title center" style="margin-bottom: 30px;">
+                    <a href="{{url_for('home.home')}}">
+                      <img src="{{url_for('static', filename='img/heirloom-icon.png')}}" style="width:100px; margin: 10px;"></img>
+                    </a>
+                  </span>
+                  <form action="" method="post" novalidate id="loginForm" style="background-color: white; padding: 30px;">
+                      {{ form.hidden_tag() }}
+
+                      <div class="wide center">
+                        <h3>Heirloom</h3>
+                      </div>
+
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
+                          {{ form.username(size=32, class_='mdl-textfield__input') }}
+                          <label class="mdl-textfield__label" for="sample3">{{ form.username.label }}</label>
+                      </div>
+                      {% for error in form.username.errors %}
+                      <br>
+                      <span style="color: red;">[{{ error }}]</span>
+                      {% endfor %}
+                      
+                      <br><br>
+                      
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
+                          {{ form.password(size=32, class_='mdl-textfield__input') }}
+                          <label class="mdl-textfield__label" for="sample3">{{ form.password.label }}</label>
+                      </div>
+                      {% for error in form.password.errors %}
+                      <br>
+                      <span style="color: red;">[{{ error }}]</span>
+                      {% endfor %}
+
+                      <br><br><br>
+
+                      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect align-right">
+                          {{ form.remember_me(class_='mdl-checkbox__input') }} 
+                          {{ form.remember_me.label }}
+                      </label>
+
+                      <br><br><br>
+                      
+                      {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored wide') }}
+
+                      <br><br>
+
+                      <div class="center wide">
+                        <a href="{{url_for('signup.signup')}}">Signup here.</a>
+                      </div>
+                  </form>
+              </div>
+              <div class="mdl-layout-spacer"></div>
             </div>
-            {% for error in form.username.errors %}
-            <br>
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-            
-            <br><br>
-            
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label wide">
-                {{ form.password(size=32, class_='mdl-textfield__input') }}
-                <label class="mdl-textfield__label" for="sample3">{{ form.password.label }}</label>
-            </div>
-            {% for error in form.password.errors %}
-            <br>
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+          </div>
 
-            <br><br><br>
-
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect align-right">
-                {{ form.remember_me(class_='mdl-checkbox__input') }} 
-                {{ form.remember_me.label }}
-            </label>
-
-            <br><br><br>
-            
-            {{ form.submit(class_='mdl-button mdl-js-button mdl-button--raised mdl-button--colored wide') }}
-        </form>
-    </div>
-    <div class="mdl-layout-spacer"></div>
-</div>
-{% endblock %}
+          <!-- page logic --> 
+          <script src="https://unpkg.com/pts@0.5.0/dist/pts.min.js"></script>
+          <script defer src="{{url_for('static', filename='js/login.js')}}"></script>
+      </main>
+  </body>
+</html>
