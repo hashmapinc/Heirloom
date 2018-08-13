@@ -1,4 +1,13 @@
 {% extends "base.jinja2" %} {% block content %}
+{% set order_status = po.get_order_status_name() %}
+{% set user_organizationId = current_user.organization.id %}
+{% set selling_organizationId = po.selling_organization.id %}
+{% set buying_organizationId = po.buying_organization.id %}
+{% set is_pay_requestable = not (order_status == "Submitted" or order_status == "Declined") %}
+{% set is_acceptable = order_status == "Submitted" %}
+{% set is_editable = order_status == "Submitted" %}
+{% set user_is_buyer = user_organizationId == buying_organizationId %}
+{% set user_is_seller = user_organizationId == selling_organizationId %}
 
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--12-col center">
@@ -48,14 +57,14 @@
 <!-- fab container --> 
 <div class="bottom-right-fab">
     <!-- accept order button -->
-    {% if po.get_order_status_name() == "Submitted" and current_user.organization.id == po.buying_organization.id  %}
+    {% if is_acceptable and user_is_seller  %}
         <a type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="{{url_for('purchase_order.accept', po_id=po.id)}}">
         <i class="material-icons">done</i>
         </a>
     {% endif %}
 
     <!-- edit / delete order buttons --> 
-    {% if po.get_order_status_name() == "Submitted" and current_user.organization.id == po.selling_organization.id  %}
+    {% if is_editable and user_is_buyer %}
         <button id="edit-fab" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
         <i class="material-icons">edit</i>
         </button>
@@ -66,24 +75,22 @@
     {% endif %}
 
     <!-- request payment button --> 
-    {% if po.get_order_status_name() == "Accepted" and current_user.organization.id == po.selling_organization.id  %}
+    {% if is_pay_requestable and user_is_seller  %}
         <button id="request-payment-fab" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
         <i class="material-icons">attach_money</i>
         </button>
     {% endif %}
 </div>
 
+<!-- import necessary dialogs --> 
+{% if is_editable and user_is_buyer %}
+    {% include 'po_details/edit_dialog.jinja2' %}
+    {% include 'po_details/delete_dialog.jinja2' %}
+{% endif %}
+{% if is_pay_requestable and user_is_seller %}
+    {% include 'po_details/request_payment_dialog.jinja2' %}
+{% endif %}
 
-<!-- edit order form --> 
-<dialog class="mdl-dialog">
-    <h4 class="mdl-dialog__title">New User</h4>
-    <form action="" method="post" novalidate id="userForm">
-
-        <div class="mdl-dialog__content">
-            <button type="button" class="mdl-button mdl-button--raised close wide">Cancel</button>
-        </div>
-    </form>
-</dialog>
 
 <!-- page logic --> 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>

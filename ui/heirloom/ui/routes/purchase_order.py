@@ -54,7 +54,7 @@ def details(po_id):
 
     else:
         # handle a valid purchase order ID
-        return render_template('po_details.jinja2', title='Purchase Orders > Details', po=po)
+        return render_template('po_details/po_details.jinja2', title='Purchase Orders > Details', po=po)
 
 
 # endpiont for getting all transactions from a purchase order

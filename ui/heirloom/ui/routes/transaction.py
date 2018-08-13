@@ -26,12 +26,14 @@ def transaction():
     if form.validate_on_submit():
         # form is valid, add transaction
         po = PurchaseOrder.query.get(form.purchase_order_id.data)
+        po.order_status = ORDER_STATUS['In Progress']
         transaction = Transaction(
             type=form.type.data, 
             notes=form.notes.data, 
             author=current_user, 
             value=form.value.data,
             purchase_order=po)
+        db.session.add(po)
         db.session.add(transaction)
         db.session.commit()
         flash("Succesfully added transaction", category="success")

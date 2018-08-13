@@ -1,27 +1,3 @@
-var dialog = document.querySelector('dialog');
-var editFab = document.querySelector('#edit-fab');
-var deleteFab = document.querySelector('#delete-fab');
-var requestPaymentFab = document.querySelector('#request-payment-fab');
-
-if (!dialog.showModal) {
-    dialogPolyfill.registerDialog(dialog);
-}
-
-// wire click listeners to each button if it exists
-deleteFab && deleteFab.addEventListener('click', function () {
-    dialog.showModal();
-});
-editFab && editFab.addEventListener('click', function () {
-    dialog.showModal();
-});
-requestPaymentFab && requestPaymentFab.addEventListener('click', function () {
-    dialog.showModal();
-});
-
-dialog.querySelector('.close').addEventListener('click', function () {
-    dialog.close();
-});
-
 /** plot transactions on a map
  * 
  * This function takes the data array response of a successful GET call to the
