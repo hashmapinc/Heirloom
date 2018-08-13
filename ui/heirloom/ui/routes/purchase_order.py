@@ -81,7 +81,40 @@ def accept(po_id):
     # check that the current user has the proper role
     if current_user.get_role_name() is not 'Seller':
         flash("You do not have permission to accept this order.", category="warning")
+        return redirect(url_for('purchase_order.details', po_id=po_id))
+
+    # validate the po_id
+    po = PurchaseOrder.query.get(po_id)
+
+    if po is None:
+        # handle an invalid purchase order ID
+        flash("Purchase Order not found", category="error")
         return redirect(url_for('purchase_order.purchase_order'))
+
+    if po.selling_organization.id is not current_user.organization.id:
+        flash("You do not have permission to accept this order.", category="warning")
+        return redirect(url_for('purchase_order.details', po_id=po_id))
+
+    if po.order_status is not ORDER_STATUS['Submitted']:
+        flash("You can only accept purchase orders with a status of Submitted", category="warning")
+        return redirect(url_for('purchase_order.details', po_id=po_id))
+    
+    # handle a valid purchase order ID
+    po.order_status = ORDER_STATUS['Accepted']
+    db.session.add(po)
+    db.session.commit()
+    flash("Succesfully accepted " + po.title, category="success")
+    return redirect(url_for('purchase_order.details', po_id=po.id))
+
+
+# endpiont for requesting payment for a purchase order
+@bp.route('/<po_id>/request_payment', methods=['GET'])
+@login_required
+def request_payment(po_id):
+    # check that the current user has the proper role
+    if current_user.get_role_name() is not 'Seller':
+        flash("You do not have permission to request payment for this order.", category="warning")
+        return redirect(url_for('purchase_order.details', po_id=po.id))
 
     # validate the po_id
     po = PurchaseOrder.query.get(po_id)
@@ -95,14 +128,15 @@ def accept(po_id):
         flash("You do not have permission to accept this order.", category="warning")
         return redirect(url_for('purchase_order.purchase_order'))
 
-    if po.order_status is not ORDER_STATUS['Submitted']:
-        flash("You can only accept purchase orders with a status of " + ORDER_STATUS['Submitted'], category="warning")
-        return redirect(url_for('purchase_order.purchase_order'))
-    
-    # handle a valid purchase order ID
-    po.order_status = ORDER_STATUS['Accepted']
+    if po.order_status == ORDER_STATUS["Submitted"] or po.order_status == ORDER_STATUS["Declined"]:
+        flash("You cannot request payment for an order with status of 'Submitted' or 'Declined'." +
+              ORDER_STATUS['Submitted'], category="warning")
+        return redirect(url_for('purchase_order.details', po_id=po.id))
+
+    # handle a valid request
+    po.order_status = ORDER_STATUS['Finished']
     db.session.add(po)
     db.session.commit()
-    flash("Succesfully accepted " + po.title, category="success")
+    flash("Succesfully requested payment for " + po.title, category="success")
     return redirect(url_for('purchase_order.details', po_id=po.id))
 # ==============================================================================

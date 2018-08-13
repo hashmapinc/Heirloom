@@ -1,15 +1,13 @@
 <!-- request payment dialog --> 
 <dialog id="request_payment_dialog" class="mdl-dialog half-wide">
     <h4 class="mdl-dialog__title">Request Payment</h4>
-    <form action="" method="post" novalidate id="requestPaymentForm">
-        <div class="mdl-dialog__content center">
-            <h3> Confirm request for payment? </h3>
-            <br><br><br>
-            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored half-wide">Request Payment</button>
-            <br><br>
-            <button type="button" id="request_payment_dialog_close" class="mdl-button mdl-button--raised close half-wide">Cancel</button>
-        </div>
-    </form>
+    <div class="mdl-dialog__content center">
+        <h3> Confirm request for payment? </h3>
+        <br><br><br>
+        <a type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored half-wide" href="{{url_for('purchase_order.request_payment', po_id=po.id)}}">Request Payment</a>
+        <br><br>
+        <button type="button" id="request_payment_dialog_close" class="mdl-button mdl-button--raised close half-wide">Cancel</button>
+    </div>
 </dialog>
 
 <!-- request payment logic --> 
