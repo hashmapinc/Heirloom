@@ -1,11 +1,23 @@
 var dialog = document.querySelector('dialog');
-var showDialogButton = document.querySelector('#show-dialog');
+var editFab = document.querySelector('#edit-fab');
+var deleteFab = document.querySelector('#delete-fab');
+var requestPaymentFab = document.querySelector('#request-payment-fab');
+
 if (!dialog.showModal) {
     dialogPolyfill.registerDialog(dialog);
 }
-showDialogButton.addEventListener('click', function () {
+
+// wire click listeners to each button if it exists
+deleteFab && deleteFab.addEventListener('click', function () {
     dialog.showModal();
 });
+editFab && editFab.addEventListener('click', function () {
+    dialog.showModal();
+});
+requestPaymentFab && requestPaymentFab.addEventListener('click', function () {
+    dialog.showModal();
+});
+
 dialog.querySelector('.close').addEventListener('click', function () {
     dialog.close();
 });

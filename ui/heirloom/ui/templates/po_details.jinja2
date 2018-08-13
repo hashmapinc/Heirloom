@@ -47,15 +47,30 @@
 
 <!-- fab container --> 
 <div class="bottom-right-fab">
-    <!-- accept order button --> 
-    <a type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="{{url_for('purchase_order.accept', po_id=po.id)}}">
-    <i class="material-icons">done</i>
-    </a>
+    <!-- accept order button -->
+    {% if po.get_order_status_name() == "Submitted" and current_user.organization.id == po.buying_organization.id  %}
+        <a type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="{{url_for('purchase_order.accept', po_id=po.id)}}">
+        <i class="material-icons">done</i>
+        </a>
+    {% endif %}
 
-    <!-- edit order button --> 
-    <button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-    <i class="material-icons">edit</i>
-    </button>
+    <!-- edit / delete order buttons --> 
+    {% if po.get_order_status_name() == "Submitted" and current_user.organization.id == po.selling_organization.id  %}
+        <button id="edit-fab" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+        <i class="material-icons">edit</i>
+        </button>
+
+        <button id="delete-fab" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+        <i class="material-icons">delete</i>
+        </button>
+    {% endif %}
+
+    <!-- request payment button --> 
+    {% if po.get_order_status_name() == "Accepted" and current_user.organization.id == po.selling_organization.id  %}
+        <button id="request-payment-fab" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+        <i class="material-icons">attach_money</i>
+        </button>
+    {% endif %}
 </div>
 
 
