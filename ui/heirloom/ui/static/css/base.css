@@ -1,6 +1,9 @@
 .wide { 
     width: 100%;
 }
+.half-wide { 
+    width: 50%;
+}
 
 .tall {
     height: 100%;

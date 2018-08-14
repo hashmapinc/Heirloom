@@ -1,0 +1,30 @@
+<!-- delete PO dialog --> 
+<dialog id="delete_dialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Delete Purchase Order</h4>
+    <form action="" method="post" novalidate id="requestPaymentForm">
+        <div class="mdl-dialog__content">
+            <button type="button" id="delete_dialog_close" class="mdl-button mdl-button--raised close wide">Cancel</button>
+        </div>
+    </form>
+</dialog>
+
+<!-- delete PO logic --> 
+<script>
+(function() {
+    var dialog = document.querySelector('#delete_dialog');
+    var fab = document.querySelector('#delete-fab');
+
+    if (!dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+    }
+
+    // wire click listeners to each button if it exists
+    fab.addEventListener('click', function () {
+        dialog.showModal();
+    });
+
+    dialog.querySelector('#delete_dialog_close').addEventListener('click', function () {
+        dialog.close();
+    });
+})();
+</script>
