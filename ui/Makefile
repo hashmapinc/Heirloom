@@ -33,6 +33,10 @@ dev: install db
 build: 
 	docker build -t hashmapinc/heirloom-ui .
 
+# push the image
+push: build 
+	docker push hashmapinc/heirloom-ui
+
 # run the container
 run: 
 	docker run --rm -it -p 80:80 hashmapinc/heirloom-ui
